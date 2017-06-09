@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>angular-async-loader demo</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="assets/bootstrap/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/common.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/ng-pagination.min.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/renew.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css"  href="css/page/jquery.page.css"> -->
+    <!-- <link href="css/admin_login.css" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" type="text/css" href="assets/diyUpload/css/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="assets/diyUpload/css/diyUpload.css">
+    <link rel="stylesheet" type="text/css" href="css/planter-main.css"/>
+    <link href="assets/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/bootstrap-table/bootstrap-table.min.css" />
+
+
+    <script type="text/javascript" src="http://cdn.goeasy.io/goeasy.js"></script>
+
+
+
+    <script src="assets/My97DatePicker/WdatePicker.js"></script> 
+    <script src="js/jquery-3.1.1.min.js"></script>
+
+    <script src="angular.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    
+
+
+    <script type="text/javascript">
+
+        var userId = $.cookie("cookieUserId");
+        var rank = $.cookie("cookieRank");
+        var userName = $.cookie("cookieUserName");
+        
+        //判断跳转路径
+        if(!userId){
+            window.location.href = "/userLogin/Login.html";
+        }else if(rank == 0){
+           window.location.href = "/#/course";
+        }else{
+           window.location.href = "/#/uploadHomework";
+        }
+        
+    </script>
+
+
+
+</head>
+<body class="center">
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+
+        <div class="navbar-inner">
+            <!-- <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
+                <span>Charisma</span></a> -->
+
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right navbar-btn icon-color">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs" id="userName"> </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="userLogin/Login.html"><i class="glyphicon glyphicon-log-out icon-color"></i> 退出</a></li>
+                </ul>
+            </div>
+            <!-- user dropdown ends -->
+            
+            <!-- <div class="btn-group pull-right navbar-btn student">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-hand-right icon-color"></i><span class="hidden-sm hidden-xs" id="activeCourse"> 选择班级</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="courseList">
+                    <li><a href="#">笔译</a></li>
+                    <li><a href="#">口译</a></li>
+                    <li><a href="#">影视英语</a></li>
+                </ul>
+            </div> -->
+
+            <div class="pull-right">
+                <a class="navbar-brand teacher" href="#">平时分详情 <i class="glyphicon glyphicon-download icon-color"></i></a>
+                <a class="navbar-brand teacher" href="#">备课中心 <i class="glyphicon glyphicon-list-alt icon-color"></i></a>
+            </div>
+            
+        </div>
+    </div>
+    <!-- topbar ends -->
+    <div class="container clearfix">
+        <div class="row">
+            <div class="topBar clearfix">
+                <div class="col-sm-2 col-lg-2">
+                    <div class="logo">Planter</div>
+                </div>
+                <div class="col-sm-10 col-lg-10">
+                    <ul class="nav nav-pills">
+                      <li role="presentation" class="active teacher"><a href="#">备课中心</a></li>
+                      <li role="presentation" class="teacher"><a href="#">评分记录</a></li>
+                      <li role="presentation" class="teacher"><a href="#">悬赏</a></li>
+                      <!-- <li role="presentation"><a href="#">问答区</a></li> -->
+                      <li role="presentation" class="teacher"><a href="#">个人中心</a></li>
+                      <li role="presentation" class="student"><a ui-sref="uploadHomework">作业上传</a></li>
+                      <li role="presentation" class="student"><a ui-sref="downloadResource">资源下载</a></li>
+                      <!-- <li role="presentation" class="student"><a ui-sref="share">知享发帖</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <!-- <div class="content center"> -->
+        <!-- <div class="top" ng-show="false" style="display:none;">
+            <h3 class="left">{{activeCourse}}口译</h3>
+
+            <div class="row">
+                <div class="box col-md-8">
+                    <div class="box-inner content-box">
+                            <div class="btn-group" role="group" aria-label="..." style="width:100%;background-color:#eee;">
+                              <a ui-sref="course" type="button" class="btn btn-hover choosen" style="width:17%">考勤</a>
+                              <button type="button" class="btn btn-hover" style="width:17%">提问</button>
+                              <button type="button" class="btn btn-hover" style="width:17%">专注</button>
+                              <button type="button" class="btn btn-hover" style="width:16%">组别</button>
+                              <button type="button" class="btn btn-hover" style="width:17%">个人作业</button>
+                              <button type="button" class="btn btn-hover" style="width:17%">资源中心</button>
+                            </div>
+                        <div class="box-content center">
+                            <div ui-view></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box col-md-4">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-bullhorn"></i> 班级公告</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-plus"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <label>
+                                <p>公告一:</p>
+                                <span>XXX考勤成功，水567，太阳673，土壤681，学士帽715，教学图174，举手图265，2次缺勤</span>
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-education"></i> 学生列表</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content center">
+                            <ul class="nav nav-list">
+                                <li class="" style="padding: 10px 15px;"> XXX考勤成功，目前10次出勤，2次缺勤</li>
+                                <li style="padding: 10px 15px;"> XXX考勤成功，目前10次出勤，2次缺勤</li>
+                                <li style="padding: 10px 15px;">XXX考勤成功，目前10次出勤，2次缺勤</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div ui-view></div>
+    <!-- </div> -->
+    <!-- <div ui-view="systemMenu"></div> -->
+
+    <!-- 添加公告弹出框begin -->
+    <div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-addNotice">
+        <div class="modal-dialog" style="">
+            <div class="modal-content no-radus" >
+                <div class="height-8">
+                </div>
+                <div class="modal-body">
+                    <div class="add-content">
+                        <div class="form-group has-success has-feedback">
+                            <textarea class="form-control textarea" onfocus="document.getElementById('note').style.display='none'" 
+                            onblur="if(value=='')document.getElementById('note').style.display='block'"></textarea>
+                            <div id="note" class="note"><font color="">输入公告内容</font></div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p class="center">
+                        <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">添加公告</button>
+                        <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">取消</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加公告弹出框end -->
+
+    <!-- 用户提示弹出框begin -->
+    <div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-errorInfo">
+        <div class="modal-dialog" style="">
+            <div class="modal-content no-radus" >
+                <div class="height-8">
+                </div>
+                <div class="modal-body">
+                    <div class="add-content" style="width:80%;" id="infoContent">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 用户提示弹出框end -->
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+    // var goEasy = new GoEasy({
+    //     appkey: "a3046b42-bae4-4785-bdac-26da75afe10b"
+    // });
+
+    // goEasy.subscribe({
+    //     channel: 'Planter',
+    //     onMessage: function(message){
+    //         alert('收到：'+message.content);
+    //     }
+    // });
+
+    var teacherMune = $(".teacher");
+    var studentMune = $(".student");
+    if(rank == 0){
+        studentMune.css("display","none");
+    }else{
+        teacherMune.css("display","none");
+    }
+    $("#userName").html(userName);
+
+
+</script>
+
+
+<script type="text/javascript" src="assets/tableExport/tableExport.js"></script>
+<script type="text/javascript" src="assets/tableExport/jquery.base64.js"></script>
+
+<script type="text/javascript" src="assets/diyUpload/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="assets/diyUpload/js/diyUpload.js"></script>
+
+<script type="text/javascript" src="assets/bootstrap-table/bootstrap-table.min.js"></script>
+
+<script src="assets/requirejs/require.js"></script>
+<script src="bootstrap.js"></script>
+<script src="assets/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+
+
+</body>
+</html>
+

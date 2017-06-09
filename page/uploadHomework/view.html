@@ -1,0 +1,98 @@
+<div class="row" ng-controller="uploadHomeworkCtrl" ng-init="init()">
+	<div class="top">
+
+		<h4 class="left pointer">当前课程<a ng-click="getActiveCourse(activeCourse,true)" title="切换课程">【{{activeCourse.course_name}} {{activeCourseTime}}】</a></h4>
+		<div class="row">
+		    <div class="box col-md-12 lg-4-reset">
+		        <div class="box-inner content-box">
+					
+					<div class="box-content center height-420">
+						<!-- 上传作业begin -->
+		            	<div class="box-inner" id="homeworkList">
+		            		<br>
+		            		<div style="height:400px;overflow-y:auto;overflow-x:hidden;padding:5px;">
+				                <div class="row reset-row" style="border:solid 1px #169b70;padding:10px 0px; margin:0px 8px 15px;" ng-repeat="h in homeworkList">
+				                    <div class="col-md-8">
+			                        	<!-- <h5>{{h.homework_title}}</h5>  -->
+			                        	<a class="pointer" ng-click="showHomeworkContent(h.homework_content)" title="作业详情"><strong>{{h.homework_title}}</strong></a>
+				                    </div>
+				                    <div class="col-md-4">
+				                        <div class="">
+				                            <p class="">{{h.homework_submit_ddl}}</p>
+				                            <p class="pointer grey">已交{{h.homework_submit_num}}人次 >> </p>
+				                            <p class="center" ng-show="{{h.homework_status == 1}}">已提交</p>
+				                            <p class="center pointer" ng-show="{{h.homework_status == 0}}" style="position:relative">
+				                            	<!-- <div id="uploadHomework1"></div> -->
+				                            	<!-- <i class="glyphicon glyphicon-open pointer icon-color pointer"></i> -->
+				                            	<!-- <input class="pointer" style="position:absolute;width:100px;height:20px;top:0px;left:-20px; opacity: 0;z-index:1000;" type="file" ng-file-select name="" id="" multiple/> -->
+				                            	<form name="form5" action="/" method="post" enctype="multipart/form-data" class="center" ng-show="{{h.homework_status == 0}}">
+						                    		<a href="javascript:;" class="a-upload course-btn">
+													    <input type="file" id="{{h.homework_id}}" name="file_AjaxFile">选择文件
+													</a>
+													<!-- <input type="file" name=""> -->
+							                    	<a class="btn btn-default course-btn" ng-click="fileUpload(h)">上传 <i class="glyphicon glyphicon-open icon-color pointer"></i></a>
+												</form>
+				                            </p>
+				                        </div>
+				                    </div>
+				                </div>
+
+				            </div>
+							<!-- 上传作业end -->
+		            	</div>
+		            </div>
+		        </div>
+		    </div>
+		</div><!--/row-->
+
+		<!-- 课程列表end -->
+	</div>
+
+	<!-- 选择课程弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-courseList">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8 center" style="height:40px;">
+					<h4 style="line-height:40px;margin-top:0px;">课程列表</h4>
+				</div>
+				<div class="modal-body">
+					<div class="" style="height:300px;overflow-y:auto;overflow-x:hidden;">
+						<ul class="nav nav-pills nav-stacked">
+						  <li role="presentation"  ng-repeat="c in courseList" ng-class="activeCourse == c ?'activeCourse':''" class="pointer"><a ng-click="selectedCourse(c)">{{c.course_name}}</a></li>
+						  <!-- <li role="presentation"><a href="#">Profile</a></li>
+						  <li role="presentation"><a href="#">Messages</a></li> -->
+						</ul>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<p class="center">
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">确定</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 选择课程弹出框end -->
+
+	<!-- 作业详情弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-homeworkContent">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8">
+				</div>
+				<div class="modal-body">
+					<div class="" style="">
+						<p>{{homeworkContent}}</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<p class="center">
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">关闭</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 作业详情弹出框end -->
+
+</div>

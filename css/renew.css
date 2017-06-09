@@ -1,0 +1,234 @@
+body{
+	
+}
+.roleManageTable{
+	width: 50%;
+}
+.pointer{
+	cursor: pointer;
+}
+.roleManageTable{
+	float: left;
+}
+.result-content{
+	border-bottom: none;
+}
+.roleMain{
+	margin-top: 10px;
+	margin-left: 30px;
+
+}
+.tabChild{
+	margin-left: 680px;
+	
+}
+.editTab{
+	width: 46%;
+    float: left;
+    margin-left: 30px;
+}
+.editTab table tbody tr th{
+	width: 16%;
+    padding-right: 12px;
+}
+.editTab table tbody tr td .inputBtn{
+	width: 150px;
+}
+.childBtn{
+	width: 12%;
+	padding: 8px 12px;
+}
+.addTab{
+	font-size: 13px;
+}
+.addTab tbody tr .roleName{
+	width: 15%;
+}
+.addDiv{
+	margin-left: 30px;
+}
+.userTab{
+
+    width: 92%;
+	float: left;
+	font-size: 14px;
+	
+}
+.userTabM{
+	 margin-left: -31px;
+}
+.addTab tbody tr .userName {
+    width: 22%;
+}
+.checkUserInfoTab{
+	margin-left: -30px;
+    margin-right: 25px;
+}
+.insert-tab tbody tr .CheckUserTh{
+	width: 10%;
+}
+.checkUserInfoTab td {
+    text-align: left;
+    padding-right: 105px;
+}
+.checkUserInfoTitle{
+	margin-left: -30px;
+}
+
+.returnBtn{
+	width: 40px;
+    height: 27px;
+ 
+}
+
+.styleBtn{
+	border-radius: 2px;
+	color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #006dcc;
+	margin-right: 10px;
+	background-image: linear-gradient(to bottom,#0088cc,#0044cc);
+    background-repeat: repeat-x;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+.searchBtn{
+	width: 40px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.searchInput{
+	width: 165px;
+    height: 29.5px;
+	
+}
+.pager {
+    margin: 20px;
+}
+.search-tab{
+	margin-bottom: 10px;
+}
+.addLottery{
+	margin-left: 508px;
+	margin-bottom: -15px;
+	width: 110px;
+	font-size: 14px;
+	margin-top: 10px;
+}
+.lotteryInput{
+	width: 135px;
+	height: 30px;
+    line-height: 30px;
+    margin-right: 46px;
+	
+}
+.fieldLength{
+	width: 100px;
+}
+.addDiv{
+	width: 100%;
+	border: 1px solid gray;
+}
+.mainH1{
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+#tableCreate{
+	font-size: 12px;
+	padding: 25px 14px;
+	border: 1px solid #e1e1e1;
+	margin-right: 30px;
+}
+.comBtn{
+	margin-top: 20px;
+	width: 70px;
+}
+.comDiv{
+	float: right;
+	margin-right: 30px;
+}
+.addLotteryTab{
+	width: 100%;
+	font-size: 12px;
+}
+.fieldLength::-webkit-input-placeholder { /* WebKit browsers */
+　　font-size: 12px;
+}
+.fieldLength:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+　　font-size: 12px;
+}
+.fieldLength::-moz-placeholder { /* Mozilla Firefox 19+ */
+　　font-size: 12px;
+}
+.fieldLength:-ms-input-placeholder { /* Internet Explorer 10+ */
+　　font-size: 12px;
+}
+
+.addLotteryChild td{
+	padding: 1px;
+}
+ul input.required{
+    border: solid 1px #f00;
+}
+
+.modify-lottery label{
+	margin-bottom: 15px;
+	font-weight: 100;
+	width: 150px;
+}
+.modify-title{
+	font-weight: bold;
+	font-size: 16px;
+}
+.modify-btn button{
+	padding: 8px 14px;
+}
+.style-modify{
+	width: 60px;
+	height: 37.6px;
+
+}
+.blue{
+	width: 60px;
+	height: 37.6px;
+	margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f5f5f5;
+	color: white;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #006dcc;
+    background-image: linear-gradient(to bottom,#0088cc,#0044cc);
+    background-repeat: repeat-x;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    border-bottom-color: #a2a2a2;
+    border-radius: 2px;
+}
+.blue:hover{
+    text-decoration: none;
+    background-position: 0 0;
+    -webkit-transition: background-position 0.1s linear;
+    -moz-transition: background-position 0.1s linear;
+    -o-transition: background-position 0.1s linear;
+    transition: background-position 0.1s linear;
+}
+.popover-content {
+    padding: 5px 14px;
+}
+.popover {
+    height: 32px;
+}
+.roleDetail{
+	width: 20%;
+	float: left;
+}
+.btnGroup{
+	margin-left: 10%;
+    margin-right: 4%;
+	float: left;
+	width: 10%;
+}

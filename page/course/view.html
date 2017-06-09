@@ -1,0 +1,121 @@
+<div class="row" ng-controller="courseCtrl" ng-init="init()">
+	<div class="top center">
+		<h3>课程类别</h3>
+		<div class="detail">
+			<hr class="inline left-20">
+			<span class="glyphicon glyphicon-leaf pull-left"></span>
+			<hr class="inline">
+		</div>
+		<!-- 课程课表begin -->
+		<div class="course-list row">
+			<div ng-repeat="c in courseList">
+				<div class="col-sm-4 col-lg-4 lg-4-reset" ng-repeat="t in c.course_open_time_list">
+					<div class="course-border">
+						<a ui-sref="attendance" title="进入课程" ng-click="getActiveCourse(c,t)">
+							<h4>{{c.course_name}}</h4>
+							<span class="glyphicon glyphicon-blackboard course-icon"></span>
+						</a>
+						<p>课程码：{{c.course_code}}</p>
+						<p>{{t}}</p>
+						<!-- <p>已开课:8节</p> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 课程列表end -->
+		<button id="" class="btn btn-default course-btn" ng-click="showAdd()">添加课程</button>
+	</div>
+
+	<!-- 添加课程弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-addCourse">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8">
+				</div>
+				<div class="modal-body">
+					<div class="add-content">
+						<div class="form-group has-success has-feedback row">
+						  <!-- <input type="text" class="form-control" placeholder="输入类别" id="" aria-describedby="inputSuccess2Status"> -->
+						  <div class="col-sm-4 col-lg-4 lg-4-reset" style="line-height:30px;">课程类别：</div>
+						  <div class="col-sm-8 col-lg-8 lg-4-reset">
+						  	<select ng-model="courseType" class="form-control" style="width:95%">
+							  	<option selected="selected" value="">请选择</option>
+							  	<option value="口译">口译</option>
+							  	<option value="新闻视听说">新闻视听说</option>
+							  	<option value="new">【新类别】</option>
+							  </select>
+							  <br>
+						  </div>
+						  <div class="col-sm-4 col-lg-4 lg-4-reset" style="line-height:30px;">开课日期：</div>
+						  <div class="col-sm-8 col-lg-8 lg-4-reset">
+						  	<select ng-model="courseDay" class="form-control" style="width:95%">
+							  	<option selected="selected" value="">请选择</option>
+							  	<option selected="" value="星期一">星期一</option>
+							  	<option value="星期二">星期二</option>
+							  	<option value="星期三">星期三</option>
+							  	<option value="星期四">星期四</option>
+							  	<option value="星期五">星期五</option>
+							  	<option value="星期六">星期六</option>
+							  	<option value="星期日">星期日</option>
+							  </select><br>
+						  </div>
+						  <div class="col-sm-4 col-lg-4 lg-4-reset" style="line-height:30px;">开课时间段：</div>
+						  <div class="col-sm-3 col-lg-3 lg-4-reset">
+						  	<select ng-model="courseStratTime" class="form-control" style="width:100%;padding-right:0px">
+							  	<option selected="selected" value="">选择</option>
+							  	<option value="08">08</option>
+							  	<option value="09">09</option>
+							  	<option value="10">10</option>
+							  	<option value="11">11</option>
+							  	<option value="12">12</option>
+							  	<option value="13">13</option>
+							  	<option value="14">14</option>
+							  	<option value="15">15</option>
+							  	<option value="16">16</option>
+							  	<option value="17">17</option>
+							  	<option value="18">18</option>
+							  	<option value="19">19</option>
+							  	<option value="20">20</option>
+							  	<option value="21">21</option>
+							  </select>
+						  </div>
+						  <div class="col-sm-1 col-lg-1 lg-4-reset"><strong>:</strong></div>
+						  <div class="col-sm-3 col-lg-3 lg-4-reset">
+						  	<select ng-model="courseEndTime" class="form-control" style="width:100%;padding-right:0px;">
+							  	<option selected="selected" value="">选择</option>
+							  	<option value="00">00</option>
+							  	<option value="10">10</option>
+							  	<option value="20">20</option>
+							  	<option value="30">30</option>
+							  	<option value="40">40</option>
+							  	<option value="50">50</option>
+							  	<option value="60">60</option>
+							  </select>
+						  </div>
+						  
+						</div>
+						<div class="form-group has-success has-feedback">
+							<div ng-show="courseType == 'new'">
+							  	<input type="text" ng-model="newType" class="form-control" placeholder="输入新类别" id="" aria-describedby="inputSuccess2Status">
+							  	<br>
+						  	</div>
+						</div>
+						<span>课程码：{{courseCode}}</span>
+
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<!-- <button data-bb-handler="confirm" type="button" class="btn btn-primary" data-dismiss="modal">确定</button> -->
+					<p class="center">
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal" ng-click="addCourse()">添加课程</button>
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">取消</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 添加课程弹出框end -->
+
+	
+</div>

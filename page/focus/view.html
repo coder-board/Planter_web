@@ -1,0 +1,170 @@
+<div class="row" ng-controller="focusCtrl" ng-init="init()">
+	<div class="top">
+		<h4 class="left">{{activeCourse.course_name}}({{activeCourse.course_code}}) {{activeCourseTime}}</h4>
+		<!-- 课程课表begin -->
+
+		<div class="row">
+		    <div class="box col-md-8 lg-4-reset">
+		        <div class="box-inner content-box">
+					<div class="btn-group" role="group" aria-label="..." style="width:100%;background-color:#eee;">
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="attendance" style="padding: 8px 23px;">考勤</button></a>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="question" style="padding: 8px 23px;" class="body-color">提问</a></button>
+					  <button type="button" class="btn btn-hover choosen" style="width:17%;height:34px;padding:0px"><a ui-sref="focus" style="padding: 8px 23px;">专注</a></button>
+					  <button type="button" class="btn btn-hover" style="width:16%;height:34px;padding:0px"><a ui-sref="group" style="padding: 8px 23px;" class="body-color">组别</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="homework" style="padding: 8px 12px;">作业</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="resource" style="padding: 8px 12px;" class="body-color">资源中心</a></button>
+					</div>
+					
+					<!-- 备课中心-专注-专注设置begin -->
+					<div class="box-content center fix-height">
+		            	<!-- <br><br> -->
+		            	<div ng-show="isChosen">
+		            		<br><br>
+							<!-- <div class="center"><h3 class="">请选择</h3></div> -->
+							<div class="center"><h3 class="">开启</h3></div>
+			                <br><br>
+			                <p class="center">
+			                    <button type="submit" class="btn btn-default course-btn" ng-click="chooseType('isCommon')">普通专注</button>
+			                    <!-- <button type="submit" class="btn btn-default course-btn" ng-click="chooseType('isGroup')">小组展示专注</button> -->
+			                </p>
+			                <br><br>
+		            	</div>
+		            	<div class="commonFocus" ng-show="isCommon">
+		            		<!-- <div class="">
+			                    <h3>普通专注</h3>
+			                </div> -->
+			                <br><br>
+			                <div class="center">
+			                    <p style="font-size: 22px;"><i class="glyphicon glyphicon-time"></i> 专注时长</p>
+			                    <p>
+			                        <select class="form-control" style="width: 50%;margin-left: 25%" ng-model="commonDuration">
+			                            <option ng-selected="true" value="">请选择</option>
+			                            <option value="5:00">5分钟</option>
+			                            <option value="10:00">10分钟</option>
+			                            <option value="15:00">15分钟</option>
+			                            <option value="20:00">20分钟</option>
+			                        </select>
+			                    </p>
+			                </div>
+			                <div class="">
+			                    <button class="btn btn-default course-btn" ng-click="startFocus('isCommon')">开始专注</button> 
+			                    <button class="btn btn-default course-btn" ng-click="backType('isCommon')">返回</button> 
+			                </div>
+		            	</div>
+		                <div class="groupFocus" ng-show="isGroup">
+		                	<br><br>
+							<div class="row">
+		                        <div class="col-xs-4"><p class="pull-right"><img src="images/group.gif" style="width:40px;"></p></div>
+		                        <div class="col-xs-7" style="height:100px;overflow:auto;background-color:#fafafa">
+		                            <div class="col-xs-12" ng-repeat="g in groupList"><p>{{g.group_name}} <input type="checkbox" name="" ng-click="checkedGroup(g)"></p></div>
+		                           <!--  <div class="col-xs-4"><p>组别2 <input type="checkbox" name=""></p></div>
+		                            <div class="col-xs-4"><p>组别3 <input type="checkbox" name=""></p></div>
+		                            <div class="col-xs-4"><p>组别4 <input type="checkbox" name=""></p></div>
+		                            <div class="col-xs-4"><p>组别5 <input type="checkbox" name=""></p></div>
+		                            <div class="col-xs-4"><p>组别6 <input type="checkbox" name=""></p></div> -->
+		                        </div>
+		                    </div>
+		                    <br>
+		                    <div class="row">
+		                        <div class="col-xs-4"><p class="pull-right"><img src="images/task.gif" style="width:40px;"></p></div>
+		                        <div class="col-xs-8">
+		                            <div class="col-xs-6"><p>学生参与打分 <input ng-model="studentNeed" class="" type="checkbox" name=""></p></div>
+		                        </div>
+		                    </div>
+		                    <br>
+		                    <div class="row">
+		                        <div class="col-xs-4"><p class="pull-right"><img src="images/time.gif" style="width:40px;"></p></div>
+		                        <div class="col-xs-8">
+		                            <div class="col-xs-5">
+		                                <p>
+		                                    <select class="form-control" ng-model="groupDuration">
+		                                        <option ng-selected="true" value="">请选择</option>
+					                            <option value="5:00">5分钟</option>
+					                            <option value="10:00">10分钟</option>
+					                            <option value="15:00">15分钟</option>
+					                            <option value="20:00">20分钟</option>
+		                                    </select>
+		                                </p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <br>
+			            	<button type="submit" class="btn btn-default course-btn" ng-click="startGroupFocus()">&nbsp;&nbsp;&nbsp;&nbsp;开 始&nbsp;&nbsp;&nbsp;&nbsp;</button>
+			                <button class="btn btn-default course-btn" ng-click="backType('isGroup')">返回</button> 
+		                </div>
+		                <!-- 备课中心-专注-专注设置end -->
+
+		                <!-- 备课中心-专注-结果begin -->
+						<div ng-show="isStartFocus">
+			                <h2><span><i class="glyphicon glyphicon-time" style="color:#169b70;"></i></span> {{duration}}</h2>
+			                <div class="">
+			                    <div class="" style="width: 80%;margin: 20px auto;border: 1px solid #e3e3e3;">
+			                        <ul class="nav-list" id="focusList">
+			                            <!-- <li class="" style="padding: 10px 15px;"> 李同学专注失败，五分钟后开小差啦！</li>
+			                            <li style="padding: 10px 15px;"> 李同学专注失败，五分钟后开小差啦！</li>
+			                            <li style="padding: 10px 15px;">李同学专注失败，五分钟后开小差啦！</li> -->
+			                        </ul>
+			                    </div>
+			                </div>
+			                <button type="submit" ng-disabled="!stop" class="btn btn-default course-btn" ng-click="reset(false)">中途终止</button>
+			                <button type="submit" class="btn btn-default course-btn" ng-click="reset(true)">重新一轮</button>
+			                <br>
+						</div>
+						<!-- 备课中心-专注-结果end -->
+
+		            </div>
+
+		        </div><br>
+		        <button type="submit" ng-hide="isStart" class="btn btn-default course-btn" ng-click="startClass()">开课</button>
+		        <p class="center" ng-show="isStart">
+	                <button type="submit" class="btn btn-default course-btn" ng-click="summary()">收集总结反馈</button>
+	                <button type="submit" class="btn btn-default course-btn space-80" ng-click="endClass()">结课</button>
+	            </p>
+		    </div>
+		    <div class="box col-md-4 lg-4-reset">
+		        <div class="box-inner">
+		            <div class="title-top">
+		                <span class="title-icon"><i class="glyphicon glyphicon-bullhorn"></i> </span>
+		                <span class="title-content pull-left">班级公告</span>
+		                <a href="javascript:;" class="btn btn-round btn-default" ng-click="showNotice()"><i class="glyphicon glyphicon-plus"></i></a>
+		            </div>
+		            <table class="table table-striped table-bordered table-reset">
+		            	<tr>
+		            		<td>
+		            			<span><strong>20</strong></span><br>
+		            			<span>4月</span><br>
+		            			<span>2017</span>
+		            		</td>
+		            		<td> 今日有新作业公布，请各位同学及时查看！
+		            		</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+		            			<span><strong>19</strong></span><br>
+		            			<span>4月</span><br>
+		            			<span>2017</span>
+		            		</td>
+		            		<td> 今日有新作业公布，请各位同学及时查看！
+		            		</td>
+		            	</tr>
+					</table>
+		        </div>
+		        <br>
+		        <div class="box-inner content-box">
+		            <div class="title-top">
+		                <span class="title-icon"><i class="glyphicon glyphicon-education"></i> </span>
+		                <span class="title-content pull-left">学生列表</span>
+		            </div>
+		            <div class="student-box">
+			            <div class="student-list">
+			                <p ng-repeat="s in studentList">{{s.student_name}}</p>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div><!--/row-->
+
+		<!-- 课程列表end -->
+	</div>
+
+</div>

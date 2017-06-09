@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assets/css/ace.min.css" />
+    	<script type="text/javascript" src="../js/prototype.js"></script>
+	</head>
+	<style>
+        .hint_span{
+            font-size: 12px;
+			margin-left: 10px;
+			display: inline-block;
+        }
+        .login-layout label {
+		    display: inline-block;
+		    margin-bottom: 11px;
+		    float: left;
+		}
+		#mainPage .bg-color{
+			background-color: #169b70;
+			background-color: #169b70 !important;
+		}
+		#mainPage .color{
+			color: #169b70;
+		}
+		.login-layout{
+			background-color: #FFF;
+		}
+		.alert-info {
+		    color: #fff;
+		    background-color: #169b70;
+		    border-color: #169b70;
+		}
+		.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+			border-top: 2px solid #169b70;
+		}
+    </style>
+	<body class="login-layout" id="mainPage">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<i class="icon-leaf green"></i>
+									<span class="color">Welcome to </span>
+									<span class="red">Planter</span>
+								</h1>
+								<h4 class="blue"></h4>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border bg-color">
+									<div class="widget-body">
+										<div class="widget-main" id="userLogin">
+											<br>
+											<ul class="nav nav-tabs" id="myTab">
+							                    <li class="" id="tabRole"><a href="#teacher">老师帐号</a></li>
+							                    <li class=""><a href="#student">学生帐号</a></li>
+							                </ul>
+											<div class="space-6"></div>
+
+											<div id="myTabContent" class="tab-content">
+							                    <div class="tab-pane" id="teacher">
+							                        <fieldset class="box-content">
+							                           <!--  <div class="alert alert-info bg-color" style="">
+							                                请输入教师姓名及密码！
+							                            </div> -->
+							                            <div class="input-group input-group-lg">
+							                                <span class="input-group-addon"><i class="glyphicon glyphicon-user color"></i></span>
+							                                <input type="text" class="form-control" placeholder="姓名" id="teaUserName">
+							                            </div>
+							                            <div class="clearfix"></div><br>
+
+							                            <div class="input-group input-group-lg clearfix">
+							                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock color"></i></span>
+							                                <input type="password" class="form-control" placeholder="密码" id="teaPassword">
+							                            </div>
+							                            <div class="clearfix"></div><br>
+							                            <p class="center">
+							                                <button type="submit" class="btn bg-color" style="width: 40%;border-color:#169b70" onclick="login('tea')">登录</button>
+							                                <button type="submit" class="btn bg-color" style="width: 40%;border-color:#169b70" onclick="showRegister()">注册</button>
+							                            </p>
+							                        </fieldset>
+							                    </div>
+							                    <div class="tab-pane active" id="student">
+							                        <fieldset class="box-content">
+							                            <!-- <div class="alert alert-info">
+							                                请输入学生学号及密码！
+							                            </div> -->
+							                            <div class="input-group input-group-lg">
+							                                <span class="input-group-addon"><i class="glyphicon glyphicon-user color"></i></span>
+							                                <input type="text" class="form-control" placeholder="学号" id="stuUserName">
+							                            </div>
+							                            <div class="clearfix"></div><br>
+
+							                            <div class="input-group input-group-lg clearfix">
+							                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock color"></i></span>
+							                                <input type="password" class="form-control" placeholder="密码" id="stuPassword">
+							                            </div>
+							                            <div class="clearfix"></div><br>
+
+							                            <p class="center">
+							                                <button type="submit" class="btn bg-color" style="width: 40%;border-color: #169b70;" onclick="login('stu')">登录</button>
+							                            </p>
+							                        </fieldset>
+							                    </div>
+							                </div>
+
+											<div class="social-or-login center">
+												<span class="bigger-110 color">welcome to Planter</te>
+											</div>
+										</div>
+										<!-- /widget-main -->
+
+										<div class="widget-main center" id="register" style="display:none;">
+											<h4>帐号注册</h4>
+
+											<div class="space-6"></div>
+
+					                        <fieldset class="box-content">
+					                            <!-- <div class="alert alert-info">
+					                                请选择身份 : 
+					                                <input type="radio" name="userType" id="teacher" value="0" /> 老师
+					                                <input type="radio" name="userType" id="student" value="1" /> 学生
+					                            </div> -->
+					                            <div class="input-group input-group-lg">
+					                                <span class="input-group-addon"><i class="glyphicon glyphicon-user color"></i></span>
+					                                <input type="text" class="form-control" placeholder="姓名" id="UserName">
+					                            </div>
+					                            <div class="clearfix"></div><br>
+
+					                            <div class="input-group input-group-lg">
+					                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock color"></i></span>
+					                                <input type="password" class="form-control" placeholder="密码" id="Password">
+					                            </div>
+					                            <div class="clearfix"></div><br>
+					                            <div class="input-group input-group-lg">
+					                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock color"></i></span>
+					                                <input type="password" class="form-control" placeholder="确认密码" id="conformPassword">
+					                            </div>
+					                            <div class="clearfix"></div><br>
+					                            <p class="center">
+					                                <button type="submit" class="btn bg-color" style="width: 40%;border-color: #169b70;" onclick="register()">注册</button>
+					                            </p>
+					                        </fieldset>
+
+											<div class="social-or-login center">
+												<span class="bigger-110">welcome to Planter</te>
+											</div>
+										</div>
+
+										<!-- <div class="toolbar clearfix" style="background-color:#dd5a43;">
+											<div></div>
+										</div> -->
+									</div>
+									<!-- /widget-body -->
+								</div>
+								<!-- /login-box -->
+							</div>
+							<!-- /position-relative -->
+						</div>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+
+
+			</div>
+		</div>
+		<!-- /.main-container -->
+		</div>
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		
+		<script src="../assets/bootstrap/bootstrap.min.js"></script>
+	
+		<!-- <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script> -->
+		<script type="text/javascript" src="../js/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="login.js"></script>
+		<script type="text/javascript">
+		    var myTab = document.getElementById("myTab");
+		    var tabRole = document.getElementById("tabRole");
+		    var getWidth = (myTab.offsetWidth - 2 * tabRole.offsetWidth)/2;
+		    // alert(getWidth);
+		    // $("myTab").css("margin-left",getWidth);
+		    tabRole.setAttribute("style","margin-left:"+ getWidth +"px");
+		    function getValue() {
+		        var userName = document.getElementById("userName");
+		        var password = document.getElementById("password");
+
+		        alert(userName.value);
+		        alert(password.value);
+
+		    }
+		    //tabs
+		    $('#myTab a:first').tab('show');
+		    $('#myTab a').click(function (e) {
+		        e.preventDefault();
+		        $(this).tab('show');
+		    });
+
+		    //显示注册账号
+		    function showRegister(){
+		    	$("#userLogin").css("display","none");
+		    	$("#register").css("display","block")
+		    }
+		</script>
+		
+	</body>
+
+</html>

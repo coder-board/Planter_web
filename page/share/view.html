@@ -1,0 +1,39 @@
+<div class="row" ng-controller="shareCtrl" ng-init="init()">
+	<div class="top">
+		<!-- 课程课表begin -->
+		<div class="row">
+		    <div class="box col-md-12 lg-4-reset">
+		        <div class="box-inner content-box">
+					<!-- 备课中心-资源中心begin -->
+					<div class="box-content center height-420">
+		            	<br><br>
+			            <div class="box-content row center">
+			                <div class="row">
+			                    <div class="col-sm-2"><strong class="pull-right" style="margin-top: 10px;">标题：</strong></div>
+			                    <div class="col-sm-9"><input type="text" ng-model="postTitle" name="" class="form-control" placeholder="请输入本次知享的标题"></div>
+			                </div>
+			                <br>
+			                <div class="row clearfix">
+			                    <div class="col-sm-2"><strong class="pull-right" style="margin-top: 10px;">内容：</strong></div>
+			                    <div class="col-sm-9">
+			                        <textarea class="form-control textarea" id="postContent" onfocus="document.getElementById('note').style.display='none'" 
+			                            onblur="if(value=='')document.getElementById('note').style.display='block'"></textarea>
+			                        <div id="note" class="note"><font color="">请输入本次知享的内容，不少于100字......</font></div>
+			                    </div>
+			                <br><br><br>
+			                <div class="">
+			                    <div id="test" ></div>
+			                </div>
+			                <br>
+			                <button type="submit" class="btn btn-default course-btn" style="margin-top:40px;">发送</button>
+			            </div>
+			        </div>
+					<!-- 备课中心-资源中心end -->
+		        </div>
+		    </div>
+		</div><!--/row-->
+
+		<!-- 课程列表end -->
+	</div>
+
+</div>

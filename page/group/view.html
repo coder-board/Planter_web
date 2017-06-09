@@ -1,0 +1,165 @@
+<div class="row" ng-controller="groupCtrl" ng-init="init()">
+	<div class="top">
+		<h4 class="left">{{activeCourse.course_name}}({{activeCourse.course_code}}) {{activeCourseTime}}</h4>
+		<!-- 课程课表begin -->
+
+		<div class="row">
+		    <div class="box col-md-8 lg-4-reset">
+		        <div class="box-inner content-box">
+					<div class="btn-group" role="group" aria-label="..." style="width:100%;background-color:#eee;">
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="attendance" style="padding: 8px 23px;">考勤</button></a>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="question" style="padding: 8px 23px;" class="body-color">提问</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="focus" style="padding: 8px 23px;">专注</a></button>
+					  <button type="button" class="btn btn-hover choosen" style="width:16%;height:34px;padding:0px"><a ui-sref="group" style="padding: 8px 23px;" class="body-color">组别</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="homework" style="padding: 8px 12px;">作业</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="resource" style="padding: 8px 12px;" class="body-color">资源中心</a></button>
+					</div>
+					
+					<!-- 备课中心-组别-开通分组begin -->
+					<div class="box-content center fix-height">
+		            	<div ng-hide="isOpenGroup">
+		            	<br><br>
+			            	<img src="images/group.png" style="width:100px;">
+			                <h4><strong>每组人数范围</strong></h4>
+			                <p>
+			                	<input ng-model="groupMin" type="number" name="" style="width:80px;"> &nbsp; - &nbsp;
+			                	<input ng-model="groupMax" type="number" name="" style="width:80px;">
+			                </p>
+			                <br>
+			                <button type="submit" class="btn btn-default course-btn btn-fixed" ng-click="openGroup()">开通分组</button>
+			                <br>
+			                <br>
+			                <p></p>
+		            	</div>
+		            	
+	            		<div class="course-list row reset-row" ng-show="isOpenGroup" style="height: 350px;overflow: auto;">
+	            			<br><br>
+							<div id="group">
+								<div class="col-sm-6 col-lg-6" ng-repeat="g in groupList">
+									<div class="course-border">
+										<h5>《{{g.group_name}}》--{{g.group_leader_name}} <span class="glyphicon glyphicon-user icon-color pointer pull-right" title="更多成员" style="margin-right:10px;" ng-click="showMember(g.group_members)"></span></h5><hr>
+										<div style="text-align:left; padding-left:8px;">
+											<p>任务：
+												<a ng-hide="{{g.group_task_content=='暂无任务'}}" href="javascript:;" class="pointer" ng-click="showTask(g.group_task_content)">任务详情</a>
+												<span ng-show="{{g.group_task_content=='暂无任务'}}">暂无任务</span>&nbsp;&nbsp;
+												<span ng-show="{{g.group_task_content=='暂无任务'}}" class="glyphicon glyphicon-plus pointer icon-color" title="增加任务" ng-click="showAddTask(g)"></span>
+											</p>
+											<p>学生分数：{{g.group_student_score==-1?'--':g.group_student_score + '分'}}</p>
+											<p>老师分数：
+												<label ng-show="g.group_teacher_score == -1">
+													<input type="text" name="" style="width:70px;" id="{{g.group_id}}">
+													<span class="glyphicon glyphicon-ok icon-color pointer" ng-click="setScore(g)"></span>
+												</label>
+												<span ng-show="g.group_teacher_score != -1">{{g.group_teacher_score}}分</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+		            	
+		                
+		            </div>
+					<!-- 备课中心-组别-开通分组end -->
+		        </div>
+		    </div>
+		    <div class="box col-md-4 lg-4-reset">
+		        <div class="box-inner">
+		            <div class="title-top">
+		                <span class="title-icon"><i class="glyphicon glyphicon-bullhorn"></i> </span>
+		                <span class="title-content pull-left">班级公告</span>
+		                <a href="javascript:;" class="btn btn-round btn-default" ng-click="showNotice()"><i class="glyphicon glyphicon-plus"></i></a>
+		            </div>
+		            <table class="table table-striped table-bordered table-reset">
+		            	<tr>
+		            		<td>
+		            			<span><strong>20</strong></span><br>
+		            			<span>4月</span><br>
+		            			<span>2017</span>
+		            		</td>
+		            		<td> 今日有新作业公布，请各位同学及时查看！
+		            		</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+		            			<span><strong>19</strong></span><br>
+		            			<span>4月</span><br>
+		            			<span>2017</span>
+		            		</td>
+		            		<td> 今日有新作业公布，请各位同学及时查看！
+		            		</td>
+		            	</tr>
+					</table>
+		        </div>
+		        <br>
+		        <div class="box-inner content-box">
+		            <div class="title-top">
+		                <span class="title-icon"><i class="glyphicon glyphicon-education"></i> </span>
+		                <span class="title-content pull-left">学生列表</span>
+		            </div>
+		            <div class="student-box">
+			            <div class="student-list">
+			                <p ng-repeat="s in studentList">{{s.student_name}}</p>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div><!--/row-->
+
+		<!-- 课程列表end -->
+	</div>
+
+	<!-- 任务详情弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-task">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8">
+				</div>
+				<div class="modal-body">
+					<div class="" style="">
+						<p>{{task}}</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<p class="center">
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">关闭</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 任务详情弹出框end -->
+
+	<!-- 发布任务弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-publicTask">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8">
+				</div>
+				<div class="modal-body">
+					<div class="add-content">
+						<div class="form-group has-success has-feedback">
+						  <h4>{{groupName}}</h4>
+						</div>
+						<div class="form-group has-success has-feedback">
+						  <input type="text" onClick="WdatePicker({lang:'zh-cn',minDate:'#F{\'%y-%M-%d\'}',dateFmt:'yyyy-MM-dd HH:mm:ss'});" class="Wdate form-control" placeholder="输入截止时间" id="taskDdl" aria-describedby="inputSuccess2Status">
+						</div>
+						<div class="form-group has-success has-feedback">
+							<textarea ng-model="taskContent" class="form-control textarea" onfocus="document.getElementById('note').style.display='none'" 
+	                        onblur="if(value=='')document.getElementById('note').style.display='block'"></textarea>
+                        	<div id="note" class="note"><font color="">输入任务内容</font></div> 
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer clearfix">
+					<p class="center">
+	                    <button type="submit" ng-click="addTask()" class="btn btn-default course-btn" data-dismiss="modal">发布</button>
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">取消</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 发布任务弹出框end -->
+
+</div>

@@ -1,0 +1,164 @@
+<div class="row" ng-controller="homeworkCtrl" ng-init="init()">
+	<div class="top">
+		<h4 class="left">{{activeCourse.course_name}}({{activeCourse.course_code}}) {{activeCourseTime}}</h4>
+		<!-- 课程课表begin -->
+
+		<div class="row">
+		    <div class="box col-md-8 lg-4-reset">
+		        <div class="box-inner content-box">
+					<div class="btn-group" role="group" aria-label="..." style="width:100%;background-color:#eee;">
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="attendance" style="padding: 8px 23px;">考勤</button></a>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="question" style="padding: 8px 23px;" class="body-color">提问</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="focus" style="padding: 8px 23px;">专注</a></button>
+					  <button type="button" class="btn btn-hover" style="width:16%;height:34px;padding:0px"><a ui-sref="group" style="padding: 8px 23px;" class="body-color">组别</a></button>
+					  <button type="button" class="btn btn-hover choosen" style="width:17%;height:34px;padding:0px"><a ui-sref="homework" style="padding: 8px 12px;">作业</a></button>
+					  <button type="button" class="btn btn-hover" style="width:17%;height:34px;padding:0px"><a ui-sref="resource" style="padding: 8px 12px;" class="body-color">资源中心</a></button>
+					</div>
+					
+					<div class="box-content center fix-height">
+						<!-- 备课中心-个人作业-作业begin -->
+		            	<div class="box-inner" ng-hide="isHomeworkList">
+		            		<div style="height:300px;overflow-y:auto;overflow-x:hidden;padding:5px;" id="homeworkList">
+		            		<br>
+				                <div class="row reset-row" ng-repeat="h in homeworkList" style="border:solid 1px #ddd; margin-bottom:15px; padding:10px 0px;">
+				                    <div class="col-md-9">
+				                    	<div class="col-md-12" style="padding-left:0px;margin-bottom:8px;text-align:left;">
+				                    		<a class="pointer" ng-click="showHomeworkContent(h.homework_content)" title="作业详情"><strong>{{h.homework_title}}</strong></a>
+				                    	</div>
+				                    	<div class="col-md-12" style="padding-left:0px">
+				                    		<span class="pull-left" style="font-size:12px;">截止日期：{{h.homework_submit_ddl}}</span>
+				                    	</div>
+				                    </div>
+				                    <div class="col-md-3">
+				                        <div class="">
+				                            <a class="pointer btn-setting" href="javascript:;" ng-click="showHomeworkList(h)">已交{{h.homework_submit_num}}份 >> </a>  
+				                        </div>
+				                    </div>
+				                </div>
+				                </div>
+				            	<button type="submit" class="btn btn-default course-btn" ng-click="showPublish()">发布作业</button>
+				            </div>
+							<!-- 备课中心-作业-作业end -->
+
+							<!-- 备课中心-作业-作业列表begin -->
+			                <div class="box-inner" ng-show="isHomeworkList">
+			                	<div style="height:300px;overflow-y:auto;overflow-x:hidden;padding:5px;" id="submitList">
+			            		<br>
+			            		<p class="clearfix"><a href="javascript:;" ng-click="backHomework()" class="pull-left underline-a" style="margin-left:20px;"> <<返回作业</a></p>
+			            		<br>
+				                <div class="row reset-row" ng-repeat="s in submitList" style="border:solid 1px #ddd; margin-bottom:15px; padding:10px 0px;">
+				                    <div class="col-md-3"><strong class="">{{s.student_name}}</strong></div>
+		                            <div class="col-md-5"><a href="{{s.homework_download_url}}" class="" title="下载">{{s.homework_submit_name}}</a></div>
+		                            <div class="col-md-4">分数:&nbsp;<input id="{{s.homework_submit_id}}" type="text" name="" class="form-change" style="width:40px;" ng-show="s.homework_score == -1">&nbsp;&nbsp;
+		                            <a class="" title="保存" ng-show="s.homework_score == -1" ng-click="homeworkScore(s)"><i class="glyphicon glyphicon-saved pointer"></i> </a>
+		                            <span ng-hide="s.homework_score == -1">{{s.homework_score}}</span></div>
+		                      
+		                        </div>
+				                </div>
+				            </div>
+							<!-- 备课中心-作业-作业列表end -->
+		                <p></p>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="box col-md-4 lg-4-reset">
+		        <div class="box-inner">
+		            <div class="title-top">
+		                <span class="title-icon"><i class="glyphicon glyphicon-bullhorn"></i> </span>
+		                <span class="title-content pull-left">班级公告</span>
+		                <a href="javascript:;" class="btn btn-round btn-default" ng-click="showNotice()"><i class="glyphicon glyphicon-plus"></i></a>
+		            </div>
+		            <table class="table table-striped table-bordered table-reset">
+		            	<tr>
+		            		<td>
+		            			<span><strong>20</strong></span><br>
+		            			<span>4月</span><br>
+		            			<span>2017</span>
+		            		</td>
+		            		<td> 今日有新作业公布，请各位同学及时查看！
+		            		</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+		            			<span><strong>19</strong></span><br>
+		            			<span>4月</span><br>
+		            			<span>2017</span>
+		            		</td>
+		            		<td> 今日有新作业公布，请各位同学及时查看！
+		            		</td>
+		            	</tr>
+					</table>
+		        </div>
+		        <br>
+		        <div class="box-inner content-box">
+		            <div class="title-top">
+		                <span class="title-icon"><i class="glyphicon glyphicon-education"></i> </span>
+		                <span class="title-content pull-left">学生列表</span>
+		            </div>
+		            <div class="student-box">
+			            <div class="student-list">
+			                <p ng-repeat="s in studentList">{{s.student_name}}</p>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div><!--/row-->
+
+		<!-- 课程列表end -->
+	</div>
+
+	<!-- 发布作业弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-pubAssignments">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8">
+				</div>
+				<div class="modal-body">
+					<div class="add-content">
+						<div class="form-group has-success has-feedback">
+						  <input type="text" onClick="WdatePicker({lang:'zh-cn',minDate:'#F{\'%y-%M-%d\'}',dateFmt:'yyyy-MM-dd HH:mm:ss'});" class="Wdate form-control" placeholder="输入截止时间" id="homeworkEndTime" aria-describedby="inputSuccess2Status">
+						</div>
+						<div class="form-group has-success has-feedback">
+						  <input type="text" ng-model="homeworkTitie" placeholder="输入作业标题"  aria-describedby="inputSuccess2Status" class="form-control">
+						</div>
+						<div class="form-group has-success has-feedback">
+							<textarea rows="5" id="homeworkContent" class="form-control textarea" onfocus="document.getElementById('note').style.display='none'" 
+	                        onblur="if(value=='')document.getElementById('note').style.display='block'"></textarea>
+                        	<div id="note" class="note"><font color="">输入作业内容</font></div> 
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer clearfix">
+					<p class="center">
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal" ng-click="publishHomework()">发布</button>
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">取消</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 发布作业弹出框end -->
+
+	<!-- 作业详情弹出框begin -->
+	<div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" id="modal-homeworkContent">
+		<div class="modal-dialog" style="">
+			<div class="modal-content no-radus" >
+				<div class="height-8">
+				</div>
+				<div class="modal-body">
+					<div class="" style="">
+						<p>{{homeworkContent}}</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<p class="center">
+	                    <button type="submit" class="btn btn-default course-btn" data-dismiss="modal">关闭</button>
+	                </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 作业详情弹出框end -->
+
+</div>
