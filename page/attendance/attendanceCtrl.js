@@ -375,7 +375,7 @@ define(function (require) {
 
         //信息推送
         var goEasy = new GoEasy({
-	        appkey: "a3046b42-bae4-4785-bdac-26da75afe10b"
+	        appkey: "BC-be5f25350dac454d943677328902cccc"
 		});
         
 	    goEasy.subscribe({

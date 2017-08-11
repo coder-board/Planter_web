@@ -1,12 +1,10 @@
 require.config({
     baseUrl: './',
     paths: {
-        // 'angular': 'assets/angular/angular',
         'angular-ui-router': 'assets/angular-ui-router/release/angular-ui-router.min',
         'angular-async-loader': 'assets/angular-async-loader/angular-async-loader.min',
         'angular-ui-mask': 'assets/angular-ui-mask/dist/mask.min',
         'ng-tags-input': 'assets/ng-tags-input/build/ng-tags-input.min',
-        // 'ng-file-upload': 'assets/ng-file-upload/ng-file-upload-all.min',
         'angular-css': 'assets/angular-css/angular-css',
         'angular-file-upload': 'assets/angular-file-upload/angular-file-upload'
     },

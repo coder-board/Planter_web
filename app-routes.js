@@ -73,8 +73,8 @@ define(function (require) {
                 controller: 'shareCtrl'
             })
             .state('userLogin', {
-                url: '/userLogin',
-                templateUrl: 'userLogin/Login.html',
+                url: './userLogin',
+                templateUrl: './userLogin/Login.html',
             })
             .state('planManage', {
                 url: '/planManage',

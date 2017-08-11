@@ -4,13 +4,6 @@
     <meta charset="utf-8">
     <title>angular-async-loader demo</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="assets/bootstrap/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/common.css"/> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"/> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/ng-pagination.min.css"/> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/renew.css"/> -->
-    <!-- <link rel="stylesheet" type="text/css"  href="css/page/jquery.page.css"> -->
-    <!-- <link href="css/admin_login.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" type="text/css" href="assets/diyUpload/css/webuploader.css">
     <link rel="stylesheet" type="text/css" href="assets/diyUpload/css/diyUpload.css">
     <link rel="stylesheet" type="text/css" href="css/planter-main.css"/>
@@ -38,7 +31,7 @@
         
         //判断跳转路径
         if(!userId){
-            window.location.href = "/userLogin/Login.html";
+            window.location.href = "./userLogin/Login.html";
         }else if(rank == 0){
            window.location.href = "/#/course";
         }else{
@@ -239,16 +232,6 @@
 
 
 <script type="text/javascript">
-    // var goEasy = new GoEasy({
-    //     appkey: "a3046b42-bae4-4785-bdac-26da75afe10b"
-    // });
-
-    // goEasy.subscribe({
-    //     channel: 'Planter',
-    //     onMessage: function(message){
-    //         alert('收到：'+message.content);
-    //     }
-    // });
 
     var teacherMune = $(".teacher");
     var studentMune = $(".student");
@@ -258,7 +241,6 @@
         teacherMune.css("display","none");
     }
     $("#userName").html(userName);
-
 
 </script>
 
